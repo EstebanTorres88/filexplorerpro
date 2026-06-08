@@ -6,7 +6,7 @@
  * @author Dilan Rojas Vargas
  */
 public class FolderNode extends FileSystemNode {
-    private ChildNode firstChild;
+    public ChildNode firstChild;
     private int childCount;
 
     public FolderNode(String name, String createdAt) {

@@ -4,7 +4,7 @@
  * @author Esteban Torres jimenez
  * @author Dilan Rojas Vargas
  */
-public class FolderStack {
+public class FolderStack<T extends FolderNode> {
     private FolderStackNode top;
     private int size;
 
@@ -13,7 +13,7 @@ public class FolderStack {
         this.size = 0;
     }
 
-    public void push(FolderNode folder) {
+    public void push(T folder) {
         if (folder == null) {
             return;
         }
@@ -23,18 +23,20 @@ public class FolderStack {
         size += 1;
     }
 
-    public FolderNode pop() {
+    @SuppressWarnings("unchecked")
+    public T pop() {
         if (isEmpty()) {
             return null;
         }
         FolderStackNode node = top;
         top = node.getNext();
         size -= 1;
-        return node.getFolder();
+        return (T) node.getFolder();
     }
 
-    public FolderNode peek() {
-        return top == null ? null : top.getFolder();
+    @SuppressWarnings("unchecked")
+    public T peek() {
+        return top == null ? null : (T) top.getFolder();
     }
 
     public boolean isEmpty() {

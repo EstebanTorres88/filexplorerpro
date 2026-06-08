@@ -4,7 +4,7 @@
  * @author Esteban Torres jimenez
  * @author Dilan Rojas Vargas
  */
-public class OperationQueue {
+public class OperationQueue<T extends Operation> {
     private OperationNode front;
     private OperationNode rear;
     private int size;
@@ -15,7 +15,7 @@ public class OperationQueue {
         this.size = 0;
     }
 
-    public void enqueue(Operation operation) {
+    public void enqueue(T operation) {
         if (operation == null) {
             return;
         }
@@ -30,7 +30,8 @@ public class OperationQueue {
         size += 1;
     }
 
-    public Operation dequeue() {
+    @SuppressWarnings("unchecked")
+    public T dequeue() {
         if (isEmpty()) {
             return null;
         }
@@ -40,7 +41,7 @@ public class OperationQueue {
             rear = null;
         }
         size -= 1;
-        return node.getOperation();
+        return (T) node.getOperation();
     }
 
     public boolean isEmpty() {
