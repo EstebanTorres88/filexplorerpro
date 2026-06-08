@@ -9,15 +9,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║    SISTEMA DE ARCHIVOS - BITÁCORA DE PRUEBAS COMPLETA    ║");
-        System.out.println("╚════════════════════════════════════════════════════════════╝");
-        System.out.println();
-        
-        // ============ SECCIÓN 1: PRUEBAS DE ESTRUCTURA ============
-        System.out.println("┌─────────────────────────────────────────────────────────┐");
-        System.out.println("│ SECCIÓN 1: ESTRUCTURAS PROPIAS E INTEGRACIÓN (35 pts)   │");
-        System.out.println("└─────────────────────────────────────────────────────────┘");
+       
         
         FileSystem fs = new FileSystem();
         
@@ -62,12 +54,7 @@ public class Main {
         System.out.println("     - Enqueue 3 operaciones: " + queue.size() + " elementos");
         System.out.println("     - Dequeue: " + queue.dequeue().getType());
         System.out.println();
-        
-        // ============ SECCIÓN 2: PRUEBAS FUNCIONALES ============
-        System.out.println("┌─────────────────────────────────────────────────────────┐");
-        System.out.println("│ SECCIÓN 2: REQUERIMIENTOS FUNCIONALES (30 pts)         │");
-        System.out.println("└─────────────────────────────────────────────────────────┘");
-        
+      
         System.out.println("\n2.1 PRUEBA: mkdir (crear carpetas)");
         fs.mkdir("Documentos");
         fs.mkdir("Descargas");
@@ -130,100 +117,10 @@ public class Main {
         System.out.println("   ✓ goForward() → avanza a Documentos");
         System.out.println();
         
-        // ============ SECCIÓN 3: LÓGICA ALGORÍTMICA ============
-        System.out.println("┌─────────────────────────────────────────────────────────┐");
-        System.out.println("│ SECCIÓN 3: LÓGICA ALGORÍTMICA (20 pts)                 │");
-        System.out.println("└─────────────────────────────────────────────────────────┘");
         
-        System.out.println("\n3.1 PRUEBA: DFS (Depth-First Search)");
-        fs.cd("/");
-        System.out.println("   Buscando 'formulario.docx' con DFS:");
-        int dfsCount = fs.searchDFS("formulario.docx");
-        System.out.println("   DFS completado ✓");
-        System.out.println();
+       
         
-        System.out.println("3.2 PRUEBA: BFS (Breadth-First Search)");
-        System.out.println("   Buscando 'README.txt' con BFS:");
-        int bfsCount = fs.searchBFS("README.txt");
-        System.out.println("   BFS completado ✓");
-        System.out.println();
         
-        System.out.println("3.3 PRUEBA: Recuento de nodos totales");
-        fs.cd("/");
-        int totalNodes = fs.countTotalNodes();
-        System.out.println("   ✓ Total de nodos en el árbol: " + totalNodes);
-        System.out.println();
-        
-        System.out.println("3.4 PRUEBA: MergeSort (Ordenamiento alfabético)");
-        fs.cd("Documentos");
-        System.out.println("   Contenido sin ordenar:");
-        fs.ls();
-        System.out.println();
-        System.out.println("   Ordenando con MergeSort...");
-        String[] sorted = fs.sortChildrenMergeSort();
-        System.out.println("   ✓ MergeSort completado:");
-        for (String name : sorted) {
-            System.out.println("     → " + name);
-        }
-        System.out.println();
-        
-        System.out.println("3.5 PRUEBA: QuickSort (Ordenamiento alfabético)");
-        System.out.println("   Ordenando con QuickSort...");
-        String[] quickSorted = fs.sortChildrenQuickSort();
-        System.out.println("   ✓ QuickSort completado:");
-        for (String name : quickSorted) {
-            System.out.println("     → " + name);
-        }
-        System.out.println();
-        
-        // ============ SECCIÓN 4: BITÁCORA Y REPORTE ============
-        System.out.println("┌─────────────────────────────────────────────────────────┐");
-        System.out.println("│ SECCIÓN 4: BITÁCORA DE PRUEBAS (15 pts)               │");
-        System.out.println("└─────────────────────────────────────────────────────────┘");
-        
-        System.out.println("\n4.1 RESUMEN DE PRUEBAS EJECUTADAS:");
-        System.out.println("   ✓ Pruebas de Estructura (2 pruebas)");
-        System.out.println("     - Árbol N-ario con punteros");
-        System.out.println("     - Genéricos en Stack y Queue");
-        System.out.println();
-        System.out.println("   ✓ Pruebas Funcionales (7 pruebas)");
-        System.out.println("     - mkdir, touch, cd, cd .., cd /, pwd");
-        System.out.println("     - Historial operativo (Back/Forward)");
-        System.out.println();
-        System.out.println("   ✓ Pruebas Algorítmicas (5 pruebas)");
-        System.out.println("     - DFS (Profundidad)");
-        System.out.println("     - BFS (Por niveles)");
-        System.out.println("     - Recuento de nodos");
-        System.out.println("     - MergeSort");
-        System.out.println("     - QuickSort");
-        System.out.println();
-        
-        System.out.println("4.2 ESTADÍSTICAS DEL ÁRBOL CREADO:");
-        fs.cd("/");
-        System.out.println("   • Raíz: 'root'");
-        System.out.println("   • Total de nodos: " + totalNodes);
-        System.out.println("   • Archivos creados:");
-        System.out.println("     - config.xml (3 KB)");
-        System.out.println("     - README.txt (5 KB)");
-        System.out.println("     - documento1.pdf (125 KB)");
-        System.out.println("     - formulario.docx (45 KB)");
-        System.out.println("   • Carpetas creadas:");
-        System.out.println("     - Documentos/");
-        System.out.println("       └─ Trabajo/");
-        System.out.println("       └─ Personales/");
-        System.out.println("     - Descargas/");
-        System.out.println("     - Música/");
-        System.out.println();
-        
-        System.out.println("4.3 COMPARATIVA DFS vs BFS:");
-        System.out.println("   • DFS visitó: " + dfsCount + " nodos (búsqueda en profundidad)");
-        System.out.println("   • BFS visitó: " + bfsCount + " nodos (búsqueda por niveles)");
-        System.out.println();
-        
-        System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║           ✓ TODAS LAS PRUEBAS COMPLETADAS               ║");
-        System.out.println("║    Proyecto cumple con TODOS los criterios de rúbrica   ║");
-        System.out.println("╚════════════════════════════════════════════════════════════╝");
     }
     
     /**
