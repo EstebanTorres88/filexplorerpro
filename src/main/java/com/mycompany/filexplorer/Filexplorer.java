@@ -8,9 +8,9 @@ import com.mycompany.filexplorer.dominio.SistemaArchivos;
 import com.mycompany.filexplorer.estructuras.LinkedListGeneric;
 import com.mycompany.filexplorer.estructuras.QueueGeneric;
 import com.mycompany.filexplorer.estructuras.StackGeneric;
-import utils.Command;
-import utils.Reader;
-import utils.Writer;
+import com.mycompany.filexplorer.utils.Command;
+import com.mycompany.filexplorer.utils.Reader;
+import com.mycompany.filexplorer.utils.Writer;
 
 
 /**
