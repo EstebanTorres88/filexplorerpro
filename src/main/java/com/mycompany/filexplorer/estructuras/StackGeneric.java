@@ -1,4 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 package com.mycompany.filexplorer.estructuras;
+
+/**
+ *
+ * @author jwd
+ */
 
 public class StackGeneric<T> {
     private ListNode<T> top;

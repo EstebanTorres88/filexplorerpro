@@ -1,4 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 package com.mycompany.filexplorer.dominio;
+
+/**
+ *
+ * @author jwd
+ */
 
 public class SistemaArchivos {
     private Carpeta root;
@@ -18,6 +28,38 @@ public class SistemaArchivos {
         current.addChild(c);
         return true;
     }
+    
+    public boolean rmdir(String name) {
+        NodoFS child = current.findChild(name);
+
+        if (!(child instanceof Carpeta folder)) {
+            return false;
+        }
+
+        if (folder.listChildren().length() > 0) {
+            return false;
+        }
+
+        current.removeChild(name);
+        return true;
+    }
+    
+    public boolean rm(String name, boolean recursive) {
+        NodoFS child = current.findChild(name);
+
+        if (child == null) {
+            return false;
+        }
+
+        if (child instanceof Carpeta) {
+            if (!recursive) {
+                return false;
+            }
+        }
+
+        current.removeChild(name);
+        return true;
+    }
 
     public boolean touch(String name, String ext, int tamKB) {
         if (current.findChild(name) != null) return false;
@@ -35,6 +77,6 @@ public class SistemaArchivos {
         if (found != null && found instanceof Carpeta) { current = (Carpeta) found; return true; }
         return false;
     }
-
+    
     public String ls() { return current.listChildren(); }
 }

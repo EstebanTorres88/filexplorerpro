@@ -1,5 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 package com.mycompany.filexplorer.dominio;
 
+/**
+ *
+ * @author jwd
+ */
 import com.mycompany.filexplorer.estructuras.LinkedListGeneric;
 
 public class Carpeta extends NodoFS {
@@ -44,10 +53,19 @@ public class Carpeta extends NodoFS {
                 files.append(c.toString());
             }
         }
+        
         StringBuilder out = new StringBuilder();
-        out.append("Carpetas: "); out.append(folders.length() > 0 ? folders.toString() : "-");
-        out.append("\nArchivos: "); out.append(files.length() > 0 ? files.toString() : "-");
-        return out.toString();
+
+        if (folders.length() > 0) {
+            out.append(folders);
+        }
+
+        if (files.length() > 0) {
+            if (folders.length() > 0) out.append("\n");
+            out.append(files);
+        }
+
+        return out.toString() + "\n";
     }
 
     @Override
