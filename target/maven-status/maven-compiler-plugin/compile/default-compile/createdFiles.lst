@@ -1,11 +1,11 @@
 com/mycompany/filexplorer/dominio/NodoFS.class
-utils/Reader.class
+com/mycompany/filexplorer/utils/Reader.class
 com/mycompany/filexplorer/estructuras/LinkedListGeneric.class
 com/mycompany/filexplorer/dominio/Archivo.class
 com/mycompany/filexplorer/dominio/SistemaArchivos.class
-utils/Command.class
 com/mycompany/filexplorer/dominio/Carpeta.class
-utils/Writer.class
+com/mycompany/filexplorer/utils/Writer.class
+com/mycompany/filexplorer/utils/Command.class
 com/mycompany/filexplorer/estructuras/ListNode.class
 com/mycompany/filexplorer/estructuras/StackGeneric.class
 com/mycompany/filexplorer/estructuras/QueueGeneric.class

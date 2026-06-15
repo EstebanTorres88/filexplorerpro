@@ -154,7 +154,8 @@ public class Filexplorer {
                     isRunning = false;
                     break;
                 default:
-                    throw new AssertionError();
+                    writer.writeln("Command not found: " + cmd.getName());
+                    break;
             }
         }
     }
