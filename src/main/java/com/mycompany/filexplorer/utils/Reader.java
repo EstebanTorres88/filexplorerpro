@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.filexplorer.utils;
 
 import java.util.Scanner;
@@ -10,6 +7,7 @@ import java.util.function.Function;
 /**
  *
  * @author jwd
+ * @author Esteban Torres Jiménez
  */
 public class Reader {
     private static final Scanner SCANNER = new Scanner(System.in);

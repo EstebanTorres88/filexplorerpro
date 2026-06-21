@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 package com.mycompany.filexplorer.dominio;
+
 
 /**
  *
  * @author jwd
+ * @author Esteban Torres Jiménez
  */
 
 public abstract class NodoFS {
@@ -24,6 +23,7 @@ public abstract class NodoFS {
     public String getNombre() { return nombre; }
     public void setParent(Carpeta p) { this.parent = p; }
     public Carpeta getParent() { return parent; }
+    public long getFechaCreacion() {return fechaCreacion;}
 
     @Override
     public String toString() { return nombre; }
