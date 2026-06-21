@@ -32,6 +32,89 @@ public class SistemaArchivos {
         return current;
     }
 
+    public void createFileSystemTree() {
+
+    mkdir("docs");
+    mkdir("imgs");
+    mkdir("music");
+    mkdir("config");
+    mkdir("projects");
+
+    cd("docs");
+    mkdir("work");
+    mkdir("university");
+    touch("cv", "pdf", 120);
+
+    cd("work");
+    touch("informe", "pdf", 100);
+    touch("presentacion", "pptx", 80);
+    touch("presupuesto", "xlsx", 60);
+
+    back();
+
+    cd("university");
+    touch("apuntes", "txt", 200);
+    touch("tesis", "pdf", 300);
+
+    goToRoot();
+    cd("imgs");
+    mkdir("vacaciones");
+    touch("perfil", "jpg", 40);
+    touch("logo", "png", 65);
+
+    cd("vacaciones");
+    touch("playa", "jpg", 33);
+    touch("montana", "jpg", 40);
+
+    goToRoot();
+    cd("music");
+    mkdir("rap");
+    mkdir("raggae");
+
+    cd("rap");
+    touch("AllEyezOnMe", "wav", 1000);
+    touch("21Questions", "mp3", 300);
+
+    back();
+
+    cd("raggae");
+    touch("ThreeLittleBirds", "wav", 2000);
+    touch("Jamming", "mp3", 500);
+
+    goToRoot();
+
+    cd("projects");
+
+    mkdir("filexplorer");
+    mkdir("stockflow");
+
+    cd("filexplorer");
+    touch("Main", "java", 100);
+    touch("README", "md", 30);
+
+    back();
+
+    cd("stockflow");
+
+    mkdir("backend");
+    mkdir("frontend");
+
+    cd("backend");
+    touch("SaleRepository", "java", 120);
+
+    back();
+
+    cd("frontend");
+    touch("App", "tsx", 110);
+
+    goToRoot();
+
+    cd("config");
+    touch("settings", "json", 5);
+
+    goToRoot();
+}
+
     public boolean mkdir(String name) {
         if (current.findChild(name) != null)
             return false;
@@ -158,21 +241,28 @@ public class SistemaArchivos {
     public String searchDFS(String nombre) {
         StackGeneric<Carpeta> stack = new StackGeneric<>();
         stack.push(root);
-        StringBuilder results = new StringBuilder();
+
+        int visitedNodes = 0;
 
         while (!stack.isEmpty()) {
             Carpeta current = stack.pop();
 
             for (int i = 0; i < current.getHijos().size(); i++) {
                 NodoFS child = current.getHijos().get(i);
+                visitedNodes++;
 
                 if (child instanceof Archivo archivo) {
                     String completeName = archivo.getNombre() + "." + archivo.getExtension();
+
                     if (completeName.equals(nombre)) {
-                        results.append(pwd(child)).append("\n");
+                        return pwd(child)
+                                + "\n[DFS] Nodos visitados: "
+                                + visitedNodes;
                     }
                 } else if (child.getNombre().equals(nombre)) {
-                    results.append(pwd(child)).append("\n");
+                    return pwd(child)
+                            + "\n[DFS] Nodos visitados: "
+                            + visitedNodes;
                 }
 
                 if (child instanceof Carpeta carpeta) {
@@ -181,36 +271,47 @@ public class SistemaArchivos {
             }
         }
 
-        return results.length() > 0 ? results.toString() : "search: " + nombre + " not found";
+        return "search: " + nombre + " not found"
+                + "\n[DFS] Nodos visitados: "
+                + visitedNodes;
     }
 
     public String searchBFS(String nombre) {
         QueueGeneric<Carpeta> queue = new QueueGeneric<>();
         queue.enqueue(root);
-        StringBuilder results = new StringBuilder();
+
+        int visitedNodes = 0;
 
         while (!queue.isEmpty()) {
-            Carpeta carpetaActual = queue.dequeue();
+            Carpeta current = queue.dequeue();
 
-            for (int i = 0; i < carpetaActual.getHijos().size(); i++) {
-                NodoFS hijo = carpetaActual.getHijos().get(i);
+            for (int i = 0; i < current.getHijos().size(); i++) {
+                NodoFS child = current.getHijos().get(i);
+                visitedNodes++;
 
-                if (hijo instanceof Archivo archivo) {
-                    String nombreCompleto = archivo.getNombre() + "." + archivo.getExtension();
-                    if (nombreCompleto.equals(nombre)) {
-                        results.append(pwd(hijo)).append("\n");
+                if (child instanceof Archivo archivo) {
+                    String completeName = archivo.getNombre() + "." + archivo.getExtension();
+
+                    if (completeName.equals(nombre)) {
+                        return pwd(child)
+                                + "\n[BFS] Nodos visitados: "
+                                + visitedNodes;
                     }
-                } else if (hijo.getNombre().equals(nombre)) {
-                    results.append(pwd(hijo)).append("\n");
+                } else if (child.getNombre().equals(nombre)) {
+                    return pwd(child)
+                            + "\n[BFS] Nodos visitados: "
+                            + visitedNodes;
                 }
 
-                if (hijo instanceof Carpeta carpeta) {
+                if (child instanceof Carpeta carpeta) {
                     queue.enqueue(carpeta);
                 }
             }
         }
 
-        return results.length() > 0 ? results.toString() : "search: " + nombre + " not found";
+        return "search: " + nombre + " not found"
+                + "\n[BFS] Nodos visitados: "
+                + visitedNodes;
     }
 
     public void queueAdd(String operacion, String ruta) {

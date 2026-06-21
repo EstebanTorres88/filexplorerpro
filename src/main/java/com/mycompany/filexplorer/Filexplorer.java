@@ -47,6 +47,10 @@ public class Filexplorer {
         SistemaArchivos fs = new SistemaArchivos();
         boolean isRunning = true;
 
+
+        //Se comenta ya que se utilizó solo realizar el caso de complejidad práctico
+        //fs.createFileSystemTree();
+
         while (isRunning) {
             String prompt = "[user@arch " + fs.getCurrent().toString() + "]$ ";
             writer.write(prompt);

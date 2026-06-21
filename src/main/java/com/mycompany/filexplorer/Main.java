@@ -1,5 +1,6 @@
 package com.mycompany.filexplorer;
 
+
 /**
  *
  * @author jwd
@@ -9,7 +10,7 @@ package com.mycompany.filexplorer;
 public class Main {
 
     public static void main(String[] args) {
-        Filexplorer.initFileExplorer();
+       Filexplorer.initFileExplorer();
     }
 
 }
