@@ -245,8 +245,8 @@ SistemaArchivos
 | `pwd` | Muestra la ruta absoluta del directorio actual |
 | `back` | Navega hacia atrás en el historial (usa pila `back`) |
 | `forward` | Navega hacia adelante en el historial (usa pila `forward`) |
-| `search -dfs <nombre>` | Búsqueda en profundidad (DFS iterativo con pila) desde la raíz |
-| `search -bfs <nombre>` | Búsqueda en anchura (BFS con cola) desde la raíz |
+| `search -dfs <nombre.extension>` | Búsqueda en profundidad (DFS iterativo con pila) desde la raíz |
+| `search -bfs <nombre.extension>` | Búsqueda en anchura (BFS con cola) desde la raíz |
 | `queue -add <operacion> <ruta>` | Agrega una tarea a la cola de operaciones por lote |
 | `queue -run` | Procesa todas las tareas en la cola (FIFO) |
  
