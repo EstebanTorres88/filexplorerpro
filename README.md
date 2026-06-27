@@ -232,7 +232,8 @@ SistemaArchivos
 | Comando | Descripción |
 |---|---|
 | `ls` | Lista el contenido del directorio actual (carpetas primero, luego archivos) |
-| `ls -s` | Lista el contenido ordenado por tamaño (MergeSort) |
+| `ls -sort name` | Lista el contenido ordenado alfabéticamente por nombre (MergeSort) |
+| `ls -sort size` | Lista el contenido ordenado por tamaño (MergeSort) |
 | `mkdir <nombre>` | Crea una subcarpeta en el directorio actual |
 | `rmdir <nombre>` | Elimina una subcarpeta vacía |
 | `rm <nombre>` | Elimina un archivo |
@@ -278,12 +279,12 @@ Implementar los comandos básicos de navegación (`mkdir`, `cd`, `ls`, etc.) y e
 **Lo que se implementó:**
  
 - **CLI interactiva** — Loop en `Filexplorer.java` con prompt estilo `[user@arch raiz/]$`, parseo de comandos con `Command.java`.
-- **Navegación completa** — `mkdir`, `rmdir`, `rm`, `rm -r`, `touch`, `ls`, `ls -s`, `cd`, `cd ..`, `cd` (volver a raíz), `pwd`.
+- **Navegación completa** — `mkdir`, `rmdir`, `rm`, `rm -r`, `touch`, `ls`, `ls -sort name`, `ls -sort size`, `cd`, `cd ..`, `cd` (volver a raíz), `pwd`.
 - **Historial con pilas** — `back` y `forward` usando dos instancias de `StackGeneric<Carpeta>`. Cada `cd` empuja el directorio actual en `back` y limpia `forward`. `back()` mueve el directorio actual a `forward` antes de retroceder.
 - **Búsqueda DFS** — Iterativa con `StackGeneric<Carpeta>`, recorre el árbol en profundidad desde la raíz.
 - **Búsqueda BFS** — Con `QueueGeneric<Carpeta>`, recorre nivel por nivel desde la raíz.
 - **Cola de operaciones** — `queue -add` encola tareas como strings; `queue -run` las procesa en orden FIFO mostrando simulación de procesamiento.
-- **Ordenamiento dinámico** — `ls -s` invoca `sortChildBySize()` en `Carpeta`, que llama a `LinkedListGeneric.sort()` con MergeSort (O(n log n)).
+- **Ordenamiento dinámico** — `ls -sort size` invoca `sortChildBySize()` y `ls -sort name` invoca `sortChildByName()` en `Carpeta`, ambos llaman a `LinkedListGeneric.sort()` con MergeSort (O(n log n)).
 ---
 
 
@@ -295,17 +296,19 @@ Se incorporaron nuevas operaciones al sistema de archivos, mejoras en el recorri
 
 #### `case "ls"`
 
-Este caso obtiene los argumentos del comando para determinar si el listado debe ordenarse por tamaño.
+Este caso obtiene los argumentos del comando para determinar si el listado debe ordenarse por nombre o tamaño.
 
 **Flujo del método:**
 
 1. Se extraen los argumentos recibidos en `cmd`.
-2. Se verifica si el primer argumento es `-s`.
-3. Si `-s` está presente, se activa la variable `orderBySize`.
-4. Se llama a `fs.ls(orderBySize)`.
-5. El resultado se escribe en la salida.
+2. Se verifica si hay al menos 2 argumentos y el primero es `-sort`.
+3. Si `-sort name` está presente, se asigna `"name"` a `sortFlag`.
+4. Si `-sort size` está presente, se asigna `"size"` a `sortFlag`.
+5. Si el criterio no es válido, se muestra un mensaje de error.
+6. Se llama a `fs.ls(sortFlag)`.
+7. El resultado se escribe en la salida.
 
-**Propósito:** mostrar el contenido de la carpeta actual y, opcionalmente, ordenarlo por tamaño.
+**Propósito:** mostrar el contenido de la carpeta actual y, opcionalmente, ordenarlo por nombre o tamaño.
 
 #### `case "pwd"`
 
@@ -564,6 +567,19 @@ Este método ordena los hijos de la carpeta por tamaño de menor a mayor.
 4. Se comparan los tamaños y la lista queda ordenada.
 
 **Propósito:** organizar el contenido de la carpeta según el tamaño de los archivos y la posición de las carpetas.
+
+
+### `sortChildByName()`
+
+Este método ordena los hijos de la carpeta alfabéticamente por nombre.
+
+**Flujo del método:**
+
+1. Llama al método `sort()` de la lista enlazada.
+2. Usa un comparador que obtiene el nombre de cada nodo.
+3. Se comparan los nombres de forma insensible a mayúsculas y la lista queda ordenada.
+
+**Propósito:** organizar el contenido de la carpeta alfabéticamente por nombre.
 
 ---
 
