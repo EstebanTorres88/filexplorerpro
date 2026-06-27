@@ -81,7 +81,7 @@ Representa una carpeta del árbol.
 - `listChildren()`
 - `listChildrenLong()`
 - `sortChildBySize()`
-
+- `sortChildByName()`
 ---
 
 ### 2.3 `Archivo`
