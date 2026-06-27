@@ -6,10 +6,9 @@ import com.mycompany.filexplorer.estructuras.StackGeneric;
 
 /**
  *
- * @author jwd
+ * @author Dilan Rojas Vargas
  * @author Esteban Torres Jiménez
  */
-
 public class SistemaArchivos {
     private Carpeta root;
     private Carpeta current;
@@ -130,7 +129,7 @@ public class SistemaArchivos {
             return false;
         }
 
-        if (folder.listChildren().length() > 0) {
+        if (folder.getHijos().size() > 0) {
             return false;
         }
 

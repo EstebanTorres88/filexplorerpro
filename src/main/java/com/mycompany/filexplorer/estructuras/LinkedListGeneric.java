@@ -3,19 +3,15 @@
 package com.mycompany.filexplorer.estructuras;
 
 import java.util.Comparator;
-
 /**
  *
- * @author jwd
+ * @author Dilan Rojas Vargas
  * @author Esteban Torres Jiménez
  */
 
 public class LinkedListGeneric<T> {
     private ListNode<T> head;
-    private int size =/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */ 0;
+    private int size = 0;
 
     public void add(T data) {
         ListNode<T> newNode = new ListNode<>(data);

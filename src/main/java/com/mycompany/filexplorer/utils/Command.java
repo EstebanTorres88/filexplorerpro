@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author jwd
+ * @author Dilan Rojas Vargas
  * @author Esteban Torres Jiménez
  */
 public class Command {

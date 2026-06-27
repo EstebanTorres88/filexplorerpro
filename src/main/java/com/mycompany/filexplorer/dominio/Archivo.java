@@ -1,13 +1,11 @@
 
 
 package com.mycompany.filexplorer.dominio;
-
 /**
  *
- * @author jwd
+ * @author Dilan Rojas Vargas
  * @author Esteban Torres Jiménez
  */
-
 
 public class Archivo extends NodoFS {
     private final String extension;

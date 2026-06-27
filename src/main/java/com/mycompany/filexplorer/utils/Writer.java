@@ -3,7 +3,7 @@ package com.mycompany.filexplorer.utils;
 
 /**
  *
- * @author jwd
+ * @author Dilan Rojas Vargas
  * @author Esteban Torres Jiménez
  */
 public class Writer<T> {

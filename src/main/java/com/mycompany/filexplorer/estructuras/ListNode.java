@@ -4,7 +4,7 @@ package com.mycompany.filexplorer.estructuras;
 
 /**
  *
- * @author jwd
+ * @author Dilan Rojas Vargas
  * @author Esteban Torres Jiménez
  */
 
