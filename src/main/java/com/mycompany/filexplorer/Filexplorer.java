@@ -22,7 +22,6 @@ public class Filexplorer {
         // Se comenta ya que se utilizó solo para realizar el caso de complejidad
         // práctico que está en el archivo "Diagrama-y-bitacora.pdf"
         //fs.createFileSystemTree();
-
         while (isRunning) {
             String prompt = "[user@arch " + fs.getCurrent().toString() + "]$ ";
             writer.write(prompt);
@@ -34,7 +33,7 @@ public class Filexplorer {
                     String[] lsArgs = cmd.getArgs();
                     String sortFlag = null;
 
-                    if (lsArgs.length > 0 && lsArgs[0].startsWith("-sort")) {
+                    if (lsArgs.length > 0) {
 
                         if (!lsArgs[0].equals("-sort")) {
                             writer.writeln("ls: invalid option '" + lsArgs[0] + "'. Use: ls -sort [name|size]");
@@ -48,15 +47,16 @@ public class Filexplorer {
 
                         String arg = lsArgs[1];
 
-                        if (arg.equals("name") || arg.equals("size")) {
+                        if ("name".equals(arg) || "size".equals(arg)) {
                             sortFlag = arg;
                         } else {
-                            writer.writeln("ls: opción inválida '" + arg + "'. Uso: ls -sort [name|size]");
+                            writer.writeln("ls: invalid sort option '" + arg + "'. Use: ls -sort [name|size]");
                             break;
                         }
                     }
 
                     writer.writeln(fs.ls(sortFlag));
+
                     break;
 
                 case "mkdir":
