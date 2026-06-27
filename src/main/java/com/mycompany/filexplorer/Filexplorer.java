@@ -21,7 +21,7 @@ public class Filexplorer {
 
         // Se comenta ya que se utilizó solo para realizar el caso de complejidad
         // práctico que está en el archivo "Diagrama-y-bitacora.pdf"
-        fs.createFileSystemTree();
+        //fs.createFileSystemTree();
 
         while (isRunning) {
             String prompt = "[user@arch " + fs.getCurrent().toString() + "]$ ";
@@ -33,9 +33,21 @@ public class Filexplorer {
                 case "ls":
                     String[] lsArgs = cmd.getArgs();
                     String sortFlag = null;
-                    
-                    if (lsArgs.length >= 2 && lsArgs[0].equals("-sort")) {
+
+                    if (lsArgs.length > 0 && lsArgs[0].startsWith("-sort")) {
+
+                        if (!lsArgs[0].equals("-sort")) {
+                            writer.writeln("ls: invalid option '" + lsArgs[0] + "'. Use: ls -sort [name|size]");
+                            break;
+                        }
+
+                        if (lsArgs.length < 2) {
+                            writer.writeln("ls: missing argument. Use: ls -sort [name|size]");
+                            break;
+                        }
+
                         String arg = lsArgs[1];
+
                         if (arg.equals("name") || arg.equals("size")) {
                             sortFlag = arg;
                         } else {
@@ -43,6 +55,7 @@ public class Filexplorer {
                             break;
                         }
                     }
+
                     writer.writeln(fs.ls(sortFlag));
                     break;
 
@@ -138,21 +151,21 @@ public class Filexplorer {
 
                 case "search":
                     String[] searchArgs = cmd.getArgs();
-                    if (searchArgs.length == 0) {
-                        writer.writeln("Usage: search [-dfs]|[-bfs] [nombre.extension]");
-                        break;
-                    } else if (searchArgs[0].equals("-dfs")) {
-                        writer.writeln(fs.searchDFS(searchArgs[1]));
 
+                    if (searchArgs.length < 2) {
+                        writer.writeln("Usage: search [-dfs|-bfs] [nombre.extension]");
+                        break;
+                    }
+
+                    if (searchArgs[0].equals("-dfs")) {
+                        writer.writeln(fs.searchDFS(searchArgs[1]));
                     } else if (searchArgs[0].equals("-bfs")) {
                         writer.writeln(fs.searchBFS(searchArgs[1]));
-
                     } else {
                         writer.writeln("search: invalid option " + searchArgs[0]);
                     }
 
                     break;
-
                 case "queue":
 
                     String[] queueArgs = cmd.getArgs();
