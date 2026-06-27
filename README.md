@@ -347,7 +347,7 @@ Este caso permite avanzar hacia la siguiente ubicación registrada en el histori
 
 ---
 
-## 2. METODOS AGREGADOS EN  Clase `FileSystem`
+## 2. METODOS AGREGADOS EN  Clase `SistemaArchivos`
 
 
 ### `createFileSystemTree()`
