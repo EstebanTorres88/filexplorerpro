@@ -33,86 +33,86 @@ public class SistemaArchivos {
 
     public void createFileSystemTree() {
 
-    mkdir("docs");
-    mkdir("imgs");
-    mkdir("music");
-    mkdir("config");
-    mkdir("projects");
+        mkdir("docs");
+        mkdir("imgs");
+        mkdir("music");
+        mkdir("config");
+        mkdir("projects");
 
-    cd("docs");
-    mkdir("work");
-    mkdir("university");
-    touch("cv", "pdf", 120);
+        cd("docs");
+        mkdir("work");
+        mkdir("university");
+        touch("cv", "pdf", 120);
 
-    cd("work");
-    touch("informe", "pdf", 100);
-    touch("presentacion", "pptx", 80);
-    touch("presupuesto", "xlsx", 60);
+        cd("work");
+        touch("informe", "pdf", 100);
+        touch("presentacion", "pptx", 80);
+        touch("presupuesto", "xlsx", 60);
 
-    back();
+        back();
 
-    cd("university");
-    touch("apuntes", "txt", 200);
-    touch("tesis", "pdf", 300);
+        cd("university");
+        touch("apuntes", "txt", 200);
+        touch("tesis", "pdf", 300);
 
-    goToRoot();
-    cd("imgs");
-    mkdir("vacaciones");
-    touch("perfil", "jpg", 40);
-    touch("logo", "png", 65);
+        goToRoot();
+        cd("imgs");
+        mkdir("vacaciones");
+        touch("perfil", "jpg", 40);
+        touch("logo", "png", 65);
 
-    cd("vacaciones");
-    touch("playa", "jpg", 33);
-    touch("montana", "jpg", 40);
+        cd("vacaciones");
+        touch("playa", "jpg", 33);
+        touch("montana", "jpg", 40);
 
-    goToRoot();
-    cd("music");
-    mkdir("rap");
-    mkdir("raggae");
+        goToRoot();
+        cd("music");
+        mkdir("rap");
+        mkdir("raggae");
 
-    cd("rap");
-    touch("AllEyezOnMe", "wav", 1000);
-    touch("21Questions", "mp3", 300);
+        cd("rap");
+        touch("AllEyezOnMe", "wav", 1000);
+        touch("21Questions", "mp3", 300);
 
-    back();
+        back();
 
-    cd("raggae");
-    touch("ThreeLittleBirds", "wav", 2000);
-    touch("Jamming", "mp3", 500);
+        cd("raggae");
+        touch("ThreeLittleBirds", "wav", 2000);
+        touch("Jamming", "mp3", 500);
 
-    goToRoot();
+        goToRoot();
 
-    cd("projects");
+        cd("projects");
 
-    mkdir("filexplorer");
-    mkdir("stockflow");
+        mkdir("filexplorer");
+        mkdir("stockflow");
 
-    cd("filexplorer");
-    touch("Main", "java", 100);
-    touch("README", "md", 30);
+        cd("filexplorer");
+        touch("Main", "java", 100);
+        touch("README", "md", 30);
 
-    back();
+        back();
 
-    cd("stockflow");
+        cd("stockflow");
 
-    mkdir("backend");
-    mkdir("frontend");
+        mkdir("backend");
+        mkdir("frontend");
 
-    cd("backend");
-    touch("SaleRepository", "java", 120);
+        cd("backend");
+        touch("SaleRepository", "java", 120);
 
-    back();
+        back();
 
-    cd("frontend");
-    touch("App", "tsx", 110);
+        cd("frontend");
+        touch("App", "tsx", 110);
 
-    goToRoot();
+        goToRoot();
 
-    cd("config");
-    touch("settings", "json", 5);
+        cd("config");
+        touch("settings", "json", 5);
 
-    goToRoot();
-}
+        goToRoot();
+    }
 
     public boolean mkdir(String name) {
         if (current.findChild(name) != null)
@@ -186,9 +186,11 @@ public class SistemaArchivos {
         current = root;
     }
 
-    public String ls(boolean orderBySize) {
-        if (orderBySize) {
+    public String ls(String sortFlag) {
+        if ("size".equals(sortFlag)) {
             current.sortChildBySize();
+        } else if ("name".equals(sortFlag)) {
+            current.sortChildByName();
         }
         return current.listChildren();
     }

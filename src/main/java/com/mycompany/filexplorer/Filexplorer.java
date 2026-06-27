@@ -19,9 +19,9 @@ public class Filexplorer {
         SistemaArchivos fs = new SistemaArchivos();
         boolean isRunning = true;
 
-
-        //Se comenta ya que se utilizó solo para realizar el caso de complejidad práctico que está en el archivo "Diagrama-y-bitacora.pdf"
-        //fs.createFileSystemTree();
+        // Se comenta ya que se utilizó solo para realizar el caso de complejidad
+        // práctico que está en el archivo "Diagrama-y-bitacora.pdf"
+        fs.createFileSystemTree();
 
         while (isRunning) {
             String prompt = "[user@arch " + fs.getCurrent().toString() + "]$ ";
@@ -32,9 +32,20 @@ public class Filexplorer {
             switch (cmd.getName()) {
                 case "ls":
                     String[] lsArgs = cmd.getArgs();
-                    boolean orderBySize = lsArgs.length > 0 && lsArgs[0].equals("-s");
-                    writer.writeln(fs.ls(orderBySize));
+                    String sortFlag = null;
+                    
+                    if (lsArgs.length >= 2 && lsArgs[0].equals("-sort")) {
+                        String arg = lsArgs[1];
+                        if (arg.equals("name") || arg.equals("size")) {
+                            sortFlag = arg;
+                        } else {
+                            writer.writeln("ls: opción inválida '" + arg + "'. Uso: ls -sort [name|size]");
+                            break;
+                        }
+                    }
+                    writer.writeln(fs.ls(sortFlag));
                     break;
+
                 case "mkdir":
                     String mkdirArg = cmd.arg(0);
 
@@ -128,7 +139,7 @@ public class Filexplorer {
                 case "search":
                     String[] searchArgs = cmd.getArgs();
                     if (searchArgs.length == 0) {
-                        writer.writeln("Usage: search [-dfs]|[-bfs] [nombre]");
+                        writer.writeln("Usage: search [-dfs]|[-bfs] [nombre.extension]");
                         break;
                     } else if (searchArgs[0].equals("-dfs")) {
                         writer.writeln(fs.searchDFS(searchArgs[1]));

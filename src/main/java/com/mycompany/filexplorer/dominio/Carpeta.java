@@ -95,6 +95,10 @@ public class Carpeta extends NodoFS {
         });
     }
 
+    public void sortChildByName() {
+        hijos.sort((a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre()));
+    }
+
     @Override
     public String toString() {
         return nombre + "/";
